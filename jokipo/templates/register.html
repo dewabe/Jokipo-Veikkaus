@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<b>Rekisteröinti</b><br />
+Voit rekisteröityä haluamallasi nimimerkillä ja salasanalla.<br />
+Sähköpostiosoite on pakollinen tieto ja sitä käytetään niin kirjautumisessa, kuin myös rekisteröinnin vahvistuksessa.<br />
+Tarkista siis, että kirjoitat sähköpostiosoitteesi oikein!<br />
+Salasana on kryptattu, joten sitä ei voida myöhemmin palauttaa (eikä nähdä ymmärrettävänä tekstinä).<br />
+Jos unohdat salasanasi, ota yhteyttä ylläpitoon.<br />
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+		{% for message in messages %}<div class='error'>{{ message | safe }}</div>{% endfor %}
+	{% endif %}
+{% endwith %}
+<form method="POST" action="/register">
+{{ form.csrf_token }}
+<table>
+ <tr>
+	<td>Nimimerkki</td>
+	<td>{{ form.name() }}</td>
+ </tr>
+ <tr>
+	<td>Salasana</td>
+	<td>{{ form.password() }}</td>
+ </tr>
+ <tr>
+	<td>Sähköposti</td>
+	<td>{{ form.email() }}</td>
+ </tr>
+ <tr>
+	<td>&nbsp;</td>
+	<td>{{ form.submit() }}</td>
+ </tr>
+</table>
+
+{% endblock %}

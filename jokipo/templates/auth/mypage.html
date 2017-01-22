@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+Käyttäjätunnuksesi on {{ current_user.username }}<br /><br />
+<b>Vaihda salasana</b><br />
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+		{% for message in messages %}<div class='error'>{{ message | safe }}</div>{% endfor %}
+	{% endif %}
+{% endwith %}
+<form method="POST" action="/mypage">
+{{ form.csrf_token }}
+<table>
+ <tr>
+	<td>Nykyinen salasana</td>
+	<td>{{ form.current_pw() }}</td>
+ </tr>
+ <tr>
+	<td>Uusi salasana</td>
+	<td>{{ form.new_pw() }}</td>
+ </tr>
+ <tr>
+	<td>Uusi salasana (uudestaan)</td>
+	<td>{{ form.new_pw_confirm() }}</td>
+ </tr>
+ <tr>
+	<td>&nbsp;</td>
+	<td>{{ form.submit() }}</td>
+ </tr>
+</table>
+</form>
+
+<b>Tietoja</b><br />
+Voit lähettää palautetta ja kehitysideoita, tai raportoida ongelmista osoitteeseen teemu@vartiainen.eu.<br />
+Huomaa, että järjestelmää pidetään <i>täysin vapaaehtoisvoimin</i> pystyssä, joten asioita hoidetaan sitä mukaan, kun ehditään.<br /><br />
+Sivusto on toteutettu täysin Pythonilla ja se käyttää Flask-miniframeworkkia. Projektin laitan jossain vaiheessa myös GitHub-tilini alle yleiseen jakoon.<br />
+Alustana järjestelmälle toimii Rasperry Pi ja verkkoyhteys on "vain kotiverkko" eli ulospäin liikenne on vain noin 2MB/s.<br />
+Tästä johtuen ainakin kuvien lataaminen voi olla toisinaan hidasta.<br /><br />
+{% if current_user.role_id == 2 %}
+<a href="{{ url_for('check_points') }}">Tarkista ottelutulokset</a>
+{% endif %}
+{% endblock %}

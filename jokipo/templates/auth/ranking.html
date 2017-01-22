@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block content %}
+<table>
+ <tr>
+	 <td>#</td>
+	 <td>Veikkaajan sijoitus</td>
+ </tr>
+ <tr>
+	<td>Nimimerkki</td>
+	<td>Veikkaajan käyttämä nimimerkki</td>
+ </tr>
+ <tr>
+	<td>Veikkaukset</td>
+	<td>Kuinka moneen otteluun veikkaaja on veikannut</td>
+ </tr>
+ <tr>
+	<td>Maalit</td>
+	<td>Kuinka monta maalia veikkaaja on veikannut oikein</td>
+ </tr>
+ <tr>
+	<td>Voitot</td>
+	<td>Kuinka monta kertaa veikkaaja on veikannut voittajan oikein</td>
+ </tr>
+ <tr>
+	<td>Tasapelit</td>
+	<td>Oikein veikatut tasapelit</td>
+ </tr>
+ <tr>
+	<td>Täysin oikeat</td>
+	<td>Täysin oikeat tulokset (molemmat maalit oikein veikkauksessa, myös tasapelit)</td>
+ </tr>
+ <tr>
+	<td>Yhteensä</td>
+	<td>Pisteiden yhteenlaskettu summa</td>
+ </tr>
+ <tr>
+	 <td>Pistettä / Veikkaus</td>
+	<td>Monta pistettä käyttäjä keskimäärin on saanut per veikattu ottelu</td>
+ </tr>
+ <tr>
+	<td>+/-</td>
+	<td>Jokaisesta veikkauksesta pelaaja saa -1, mutta jokaisesta saadusta pisteestä +1</td>
+ </tr>
+</table>
+<p>Veikkausten määrä, keskimääräinen pistemäärä sekä plus/miinus-pisteet eivät vaikuta sijoitukseen.</p>
+<table class="ranking">
+ <tr>
+	<td>#</td>
+	<td>Nimimerkki</td>
+	<td>Veikkaukset</td>
+	<td>Maalit</td>
+	<td>Voitot</td>
+	<td>Tasapelit</td>
+	<td>Täysin oikeat</td>
+	<td>Yhteensä</td>
+	<td>Pistettä / veikkaus</td>
+	<td>+/-</td>
+ </tr>
+{% for rank in ranking %}
+ <tr{% if current_user.username == ranking[rank]['user']['username'] %}
+  class="own"{% endif %}>
+	<td>{% if rank == 1 %}<img src="/static/img/trophy.png" />{% else %}{{ rank }}{% endif %}</td>
+	<td>{{ ranking[rank]['user']['username'] }}</td>
+	<td>{{ ranking[rank]['bets'] }}</td>
+	<td>{{ ranking[rank]['goals'] }}</td>
+	<td>{{ ranking[rank]['wins'] }}</td>
+	<td>{{ ranking[rank]['ties'] }}</td>
+	<td>{{ ranking[rank]['corrects'] }}</td>
+	<td>{{ ranking[rank]['total'] }}</td>
+	<td>{{ (ranking[rank]['total'] / ranking[rank]['bets'])|round(2, 'floor') }}</td>
+	<td>{{ ranking[rank]['total'] - ranking[rank]['bets'] }}</td>
+ </tr>
+{% endfor %}
+</table>
+{% endblock %}

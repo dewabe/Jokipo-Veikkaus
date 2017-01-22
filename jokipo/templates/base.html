@@ -1,0 +1,42 @@
+<html>
+<head>
+<title>JOKIPO!</title>
+<meta charset="UTF-8">
+<meta name="description" content="Jokipo-veikkaus!">
+<meta name="keywords" content="Jokipojat, Veikkaus">
+<meta name="author" content="Teemu 'dewabe' Vartiainen">
+<link rel="stylesheet" type="text/css" href="/static/css/main.css">
+</head>
+
+<body>
+<menu id="main">
+{% if current_user.is_authenticated %}
+	{% for menuitem in main_menu %}
+		{% if menuitem['id'] == main_menu_id %}<menuitem class="selected">{{ menuitem['text'] }}</menuitem>
+		{% else %}<menuitem><a href="{{ menuitem['link'] }}">{{ menuitem['text'] }} </a></menuitem>{% endif %}
+	{% endfor %}
+	<menuitem><a href="/logout">Kirjaudu ulos</a></menuitem>
+{% else %}
+	{% if main_menu_id == 'MAIN' %}<menuitem class="selected">Kirjaudu</menuitem>
+	{% else %}<menuitem><a href="/">Kirjaudu </a></menuitem>{% endif %}
+	{% if main_menu_id == 'REGISTER' %}<menuitem class="selected">Rekisteröidy</menuitem>
+	{% else %}<menuitem><a href="/register">Rekisteröidy </a></menuitem>{% endif %}
+{% endif %}
+</menu>
+
+{% if sub_menu %}
+<menu id="sub">
+{% for subitem in sub_menu %}
+	{% if subitem == sub_menu_id %}<menuitem class="selected">{{ sub_menu[subitem]['text'] }}</menuitem>
+	{% else %}<menuitem><a href="{{ sub_menu[subitem]['link'] }}">{{ sub_menu[subitem]['text'] }}</a></menuitem>{% endif %}
+{% endfor %}
+</menu>
+{% endif %}
+
+<content>{% block content %}{% endblock %}</content>
+
+<footer>
+&copy; dewabe <!--| <a href="#">Rekisteriseloste</a>-->
+</footer>
+</body>
+</html>

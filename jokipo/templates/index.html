@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if current_user.is_authenticated %}
+	{% include 'auth/logged_in.html' %}
+{% else %}
+	{% include 'login_form.html' %}
+{% endif %}
+{% include 'description.html' %}
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+{% if special[0] %}
+Suodata joukkueen mukaan:<br />
+<a href="/matches/list">Ei suodatusta</a>
+{% for team in special[0] %}
+<a href="/matches/list/{{ team.team_id }}"><img src="/static/img/team_icons/{{ team.logo }}" style="width: 50px; height: 50px" /></a>
+{% endfor %}
+
+{% endif %}
+<table class="bets">
+ <tr>
+	<td>Päivämäärä</td>
+	<td>Kello</td>
+	<td>Kotijoukkue</td>
+	<td>Vierasjoukkue</td>
+ </tr>
+ <form method="POST" action="/multibet">
+{% for match in special[1] %}
+ <tr>
+	<td>{{ match.match_time.strftime('%d.%m.%Y') }}</td>
+	<td>{{ match.match_time.strftime('%H:%M') }}</td>
+	<td>{{ match.home_team.name }}</td>
+	<td>{{ match.away_team.name }}</td>
+ </tr>
+{% endfor %}
+</form>
+</table>
+{% endblock %}

@@ -1,0 +1,209 @@
+html, body {
+	margin: 0;
+	padding: 0;
+	max-width: 100%;
+	overflow-x: hidden;
+}
+
+body {
+	background-image: url('/static/img/bg-image.jpg');
+	background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+	background-attachment: fixed;
+}
+
+menu {
+	position: relative;
+	width: 100%;
+	-webkit-transform:rotate(-2deg); /* WebKit */
+	-o-transform:rotate(-2deg); /* Opera */
+	-ms-transform:rotate(-2deg); /* MS IE */
+	filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=1.5); /* Older IE */
+	
+	background: rgb(255, 0, 0) transparent;	/* default fallback */
+	background: rgba(255, 0, 0, 0.6);	/* nice browsers */
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99FF0000, endColorstr=#99FF0000);	/* IE 6/7 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99FF0000, endColorstr=#99FF0000)";	/* IE8 */
+}
+
+/* Text settings */
+a {
+	color: #000;
+	text-decoration: none;
+}
+
+
+/* Bolded text */
+a, menu#main menuitem.selected {
+	font-weight: bold;
+}
+
+a:hover, menu#sub menuitem a:hover {
+	color: #f00;
+}
+
+menu#sub menuitem a {
+	color: #fff;
+}
+
+menu#main {
+	padding: 20px 50px;
+	margin-bottom: 50px;
+	left: -20px;
+	border: 2px solid #000;
+	border-right: 0;
+	border-left: 0;
+}
+
+menu#main menuitem {
+	font-size: 20pt;
+	color: #000;
+	margin-left: -4px;
+}
+
+menu#main menuitem a, menu#main menuitem.selected {
+	padding: 22px;
+}
+
+menu#main menuitem a:hover, menu#main menuitem.selected, menu#sub {
+	background-color: #000;
+	color: #fff;
+}
+
+menu#main menuitem.selected {
+	border-left: 2px solid #000;
+	border-right: 2px solid #000;
+}
+
+menu#sub {
+	left: -10px;
+	top: -50px;
+	padding: 5px 10px;
+	border-bottom: 2px solid #000;
+}
+
+menu#sub menuitem {
+	padding: 0 20px;
+}
+
+content {
+	background: rgb(255, 255, 255) transparent;	/* default fallback */
+	background: rgba(255, 255, 255, 0.8);	/* nice browsers */
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#CCFFFFFF, endColorstr=#CCFFFFFF);	/* IE 6/7 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#CCFFFFFF, endColorstr=#CCFFFFFF)";	/* IE8 */
+	
+	display: block;
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 10px;
+	border: 2px solid #aaa;
+	border-radius: 5px;
+}
+
+footer {
+	position: fixed;
+	color: #fff;
+	bottom: 5px;
+	right: 5px;
+}
+
+.error {
+	background-color: #fdd;
+	font-weight: bold;
+	display: inline-block;
+	padding: 10px;
+	margin-bottom: 20px;
+	border: 1px dotted #f00;
+}
+
+table.month {
+	border-radius: 5px;
+}
+
+table.month td {
+	background-color: #aac;
+}
+
+table.month th, table.month td.noday  {
+	background-color: #ddd;
+}
+
+table.month, table.month  td, table.month th {
+	border: 1px solid #000;
+}
+
+table.month  td, table.month th {
+	text-align: center;
+	padding: 20px;
+}
+
+table.month  td.today {
+	border: 3px solid #f66;
+}
+
+table.month  td.day_passed {
+	background-color: #aaa;
+} 
+
+table.month td.sat {
+	background-color: #fdd;
+}
+
+table.month td.sun {
+	background-color: #faa;
+}
+
+table.month td.match_day {
+	background-color: #0f0;
+}
+
+table.month a {
+	display: block;
+	text-align: center;
+}
+
+table.month th a {
+	display: inline-block;
+}
+
+table.month td {
+	position: relative;
+	width: 100px;
+	height: 100px;
+	max-width: 100px;
+    max-height:200px;
+}
+
+table.month td span.day_number {
+	position: absolute;
+	top: 0;
+	left: 0;
+	border-right: 2px solid #555;
+	border-bottom: 2px solid #555;
+	width: 30px;
+	line-height: 20px;
+	height: 20px;
+	background-color: #ccc;
+}
+
+table.bets td {
+	padding: 5px;
+}
+
+table.ranking {
+	padding: 0px;
+	border-spacing: 0;
+	border-collapse: collapse;
+}
+
+table.ranking td {
+	padding: 10px;
+}
+
+table.ranking tr.own {
+	background-color: #fdd;
+	border-radius: 10px;
+	border: 1px solid #000;
+}

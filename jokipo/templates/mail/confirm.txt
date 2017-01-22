@@ -1,0 +1,4 @@
+Terve!<br />
+Olet rekisteröitynyt Jokipo-veikkaukseen käyttäjänimellä {{ user.username }}.
+Vahvista rekisteröinti tästä kirjautumalla sähköpostiosoittellasi ja salasanalla tästä linkistä:
+{{ url_for('confirm', token=token, _external=True) }}

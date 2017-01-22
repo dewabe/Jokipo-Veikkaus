@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+		{% for message in messages %}<div class='error'>{{ message | safe }}</div>{% endfor %}
+	{% endif %}
+{% endwith %}
+nyt pitää kirjautua
+<form method="POST" action="/login">
+{{ form.csrf_token }}
+<table>
+	{{ form.token(value=token) }}
+ <tr>
+	<td>Sähköposti</td>
+	<td>{{ form.email() }}</td>
+ </tr>
+ <tr>
+	<td>Salasana</td>
+	<td>{{ form.password() }}</td>
+ </tr>
+ <tr>
+	<td>Muista minut</td>
+	<td>{{ form.remember_me() }}</td>
+ </tr>
+ <tr>
+	<td>&nbsp;</td>
+	<td>{{ form.submit() }}</td>
+ </tr>
+</table>
+</form>
+
+{% endblock %}
